@@ -1,0 +1,59 @@
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.15); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.4s infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+.heart-float {
+  position: absolute;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 3s linear infinite;
+}
+
+/* message fade */
+.message { 
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+.fade-in { opacity: 1; transform: translateY(0); }
+.fade-out { opacity: 0; transform: translateY(6px); }
+
+/* modal styles */
+.modal-backdrop {
+  position: fixed; inset: 0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); z-index:60;
+}
+.modal {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 18px; border-radius:12px; width:320px; max-width:90%;
+}
+.input-pw { padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff }
+.btn { padding:8px 12px; border-radius:8px }
+.btn-primary { background: linear-gradient(90deg,#ff4d6d,#ff7a7a); color:white; border:none }
+
+/* small scale-in for modal */
+.scale-in { animation: scaleIn 220ms ease both }
+@keyframes scaleIn { from { transform: scale(.98); opacity:0 } to { transform: scale(1); opacity:1 } }
+
+/* page fade wrapper */
+.page-fade { opacity: 1; transition: opacity 300ms ease, transform 300ms ease }
+@media (prefers-reduced-motion: reduce) { .page-fade { transition: none } }
