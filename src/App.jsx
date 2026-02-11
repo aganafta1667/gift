@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import './App.css'
 import Start from './components/start'
 import Loading from './components/loading'
@@ -21,14 +22,71 @@ function App() {
   // default password for the demo
   const expectedPassword = 'cinta'
 
+  // Page transition variants
+  const pageVariants = {
+    initial: { 
+      opacity: 0,
+      scale: 0.95,
+      y: 20
+    },
+    animate: { 
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.33, 1, 0.68, 1]
+      }
+    },
+    exit: { 
+      opacity: 0,
+      scale: 0.95,
+      y: -20,
+      transition: {
+        duration: 0.3,
+        ease: [0.33, 1, 0.68, 1]
+      }
+    }
+  }
+
   return (
     <>
       <HeartCursor />
-      {currentPage === 'start' && <Start onStartClick={handleStartClick} />}
-      {currentPage === 'loading' && (
-        <Loading expectedPassword={expectedPassword} onSuccess={handleUnlock} />
-      )}
-      {currentPage === 'pesan' && <Pesan />}
+      <AnimatePresence mode="wait">
+        {currentPage === 'start' && (
+          <motion.div
+            key="start"
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <Start onStartClick={handleStartClick} />
+          </motion.div>
+        )}
+        {currentPage === 'loading' && (
+          <motion.div
+            key="loading"
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <Loading expectedPassword={expectedPassword} onSuccess={handleUnlock} />
+          </motion.div>
+        )}
+        {currentPage === 'pesan' && (
+          <motion.div
+            key="pesan"
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <Pesan />
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* <Start />
       <Loading />
       <PasswordModal />

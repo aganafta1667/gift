@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/loading.css'
 import PasswordModal from './PasswordModal'
 
@@ -55,19 +56,99 @@ export default function Loading({ messages = null, messageInterval = 3000, expec
     <div className="page page-fade h-screen flex items-center justify-center bg-black relative overflow-hidden">
       {/* floating hearts background */}
       <div className="absolute inset-0 pointer-events-none">
-        <span className="heart-float left-[20%]">💖</span>
-        <span className="heart-float left-[40%] delay-200">🧣</span>
-        <span className="heart-float left-[60%] delay-500">🍫</span>
-        <span className="heart-float left-[75%] delay-700">💓</span>
+        <motion.span
+          animate={{
+            y: [0, -100, -200, -300],
+            opacity: [0, 1, 1, 0],
+            rotate: [0, 360]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute text-3xl left-[20%] bottom-0"
+        >
+          💖
+        </motion.span>
+        <motion.span
+          animate={{
+            y: [0, -100, -200, -300],
+            opacity: [0, 1, 1, 0],
+            rotate: [0, -360]
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 1
+          }}
+          className="absolute text-3xl left-[40%] bottom-0"
+        >
+          🧣
+        </motion.span>
+        <motion.span
+          animate={{
+            y: [0, -100, -200, -300],
+            opacity: [0, 1, 1, 0],
+            rotate: [0, 360]
+          }}
+          transition={{
+            duration: 4.5,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 2
+          }}
+          className="absolute text-3xl left-[60%] bottom-0"
+        >
+          🍫
+        </motion.span>
+        <motion.span
+          animate={{
+            y: [0, -100, -200, -300],
+            opacity: [0, 1, 1, 0],
+            rotate: [0, -360]
+          }}
+          transition={{
+            duration: 5.5,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 3
+          }}
+          className="absolute text-3xl left-[75%] bottom-0"
+        >
+          💓
+        </motion.span>
       </div>
 
       {/* center content */}
       <div className="flex flex-col items-center gap-4 relative z-10">
-        <div className="text-7xl animate-heartbeat">❤️</div>
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 1.4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="text-7xl"
+        >
+          ❤️
+        </motion.div>
 
-        <p className={`text-pink-200 message ${fade ? 'fade-in' : 'fade-out'}`}>
-          {msgs[index]}
-        </p>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="text-pink-200 text-xl"
+          >
+            {msgs[index]}
+          </motion.p>
+        </AnimatePresence>
       </div>
 
       {showModal && (
