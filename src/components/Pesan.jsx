@@ -21,15 +21,19 @@ const Pesan = () => {
   const paragraphData = [
     {
       id: 1,
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      content: 'Hai sayangkuu, cewe aku yang paling lucu dan paling gennit🤏🏻 selamat hari kasih sayang yaa, semoga kita bisa terus saling mengasihi dan menyayangi satu sama lain yaaa lopp. Kita bisa terus menjalin hubungan yg saling membangun, saling mengerti, dan saling menguatkan satu sama lain😘😘'
     },
     {
       id: 2,
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      content: 'Meskipun saat ini kita gk bisa ketemu bareng2, aku tetep ngrasa bersyukur kamu masi selalu ada buat akuu🥹 maaci yaa masi mau nemenin aku, masi mau bertahan sama aku. Kuharap ini bisa bertahan sampai kelak nanti di jenjang hubungan yang lebih tinggi. Aminnnnn😊😊'
     },
     {
       id: 3,
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+      content: 'Di momen ini aku jg mau ngungkapin lagi ttg perasaanku ke kamu. Mungkin akhir akhir ini kamu sering ngrasa bahwa rasa yg aku miliki ke kamu itu gk sekuat dulu, padahal hal itu salah😞 walau aku kadang takut kalau suatu saat nanti gk bisa ngebahagiain kamu, tapi makin kesini aku makin ngrasa sayang ke kamu, gk mau kehilangan kamu, dan mau kamu yg selalu ada dihidupku sayangg🫂'
+    },
+    {
+      id: 4,
+      content: 'Kita jaga bareng2 hubungan ini yaa, biarlah rasa kasih yg kita miliki bisa terus ada di antara kita. Kita trus saling support dan dukung buat kuliah kita masing2, buat setiap proses hidup kita, dan tentunya buat pertumbuhan iman kita sama Tuhan jg yaa sayangg. kita bisa trus bertumbuh bareng di dalam Tuhan dan biarlah Tuhan jg berkenan buat hubungan kita kedepannyaa🥰🥰'
     }
   ]
 
