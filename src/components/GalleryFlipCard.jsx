@@ -45,7 +45,6 @@ const GalleryFlipCard = ({ image, caption }) => {
             src={image.src}
             alt={image.alt}
             className="gallery-flip-card-image"
-            loading="lazy"
           />
           <div className="gallery-flip-card-overlay">
             <span className="gallery-flip-hint">Click to flip</span>

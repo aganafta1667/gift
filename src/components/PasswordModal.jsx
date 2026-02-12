@@ -22,12 +22,31 @@ export default function PasswordModal({
     'Kok masi salah sii',
     'ishh ishhh',
     'dah berkali kali loo😒',
-    'kenal pakket gk sii, masa lupaa',
+    'dihitung yg bener ihh',
+    'masak lupaa sii',
     'ahh tauk dehh',
     'taukk🙄',
     'dah badmood akuu',
     'bye byeee👋👋',
     'byeee',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
+    'BYEEEE',
     'BYEEEE'
   ]
 
@@ -124,7 +143,7 @@ export default function PasswordModal({
               <div className="absolute inset-0 shimmer-effect pointer-events-none"></div>
               
               <h3 className="text-white text-lg font-semibold mb-2">
-                Masukkan kata sandi
+                Relationship duration 
               </h3>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-2">
@@ -136,6 +155,7 @@ export default function PasswordModal({
                     setError('')
                   }}
                   type="password"
+                  placeholder='in days...'
                   className="px-3 py-2 text-white rounded-md transition-all duration-300 ring-1 ring-white/50 focus:ring-2 focus:ring-pink-400/90 focus:outline-none"
                   whileFocus={{ scale: 1.02 }}
                   animate={error ? {

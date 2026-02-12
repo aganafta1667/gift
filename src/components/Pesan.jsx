@@ -21,17 +21,14 @@ const Pesan = () => {
   const paragraphData = [
     {
       id: 1,
-      title: 'Momen Indah',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     },
     {
       id: 2,
-      title: 'Cinta Sejati',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     },
     {
       id: 3,
-      title: 'Selamanya Bersama',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
   ]
@@ -343,9 +340,6 @@ const Pesan = () => {
                       transition={{ duration: 0.5 }}
                       className="mb-8"
                     >
-                      <h3 className="text-xl md:text-2xl font-bold text-pink-300 mb-4">
-                        {paragraph.title}
-                      </h3>
                       <p className="text-pink-200 text-justify mb-8 text-sm md:text-lg">
                         {paragraph.content}
                       </p>
@@ -363,14 +357,6 @@ const Pesan = () => {
                       transition={{ duration: 0.5 }}
                       className="mb-8"
                     >
-                      <motion.h3
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-xl md:text-2xl font-bold text-pink-300 mb-4"
-                      >
-                        {paragraph.title}
-                      </motion.h3>
                       <TypewriterText
                         text={paragraph.content}
                         delay={200}
@@ -404,7 +390,7 @@ const Pesan = () => {
                     <div className="gallery-header">
                       <div>
                         <p className="gallery-kicker">Galeri Pakket & Clinnn</p>
-                        <h2 className="gallery-title">Momen kecil yg tak terlupakan🤗</h2>
+                        <h2 className="gallery-title">Momen yg tak terlupakan🤗</h2>
                       </div>
                     </div>
 
@@ -451,7 +437,12 @@ const Pesan = () => {
                     </div>
 
                     <p className="gallery-note">
-                      Lucu lucu kann fotonyaa, nanti kita banyakin lagi yaa🥹
+                      Lucu lucu kann fotonyaa, nanti kita banyakin lagi yaa foto barengnya kalo dah ketemu🥹<br />
+                      <div className='font-bold text-lg'>
+                        Sayang clinnn🤗🤗<br />
+                        Lopyumoree sayangkuu💖 <br />
+                        Tuhan Yesus memberkatii😇
+                      </div>
                     </p>
                   </motion.section>
 

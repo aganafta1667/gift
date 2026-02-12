@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import '../styles/start.css'
+import { preloadImagesOptimistic } from '../utils/imagePreloader'
 
 const Start = ({ onStartClick }) => {
+  // Agresif preload: load semua foto sejak halaman Start dibuka
+  useEffect(() => {
+    const galleryImages = [
+      '/foto-1.jpg',
+      '/foto-2.jpg',
+      '/foto-3.jpg',
+      '/foto-4.jpg',
+      '/foto-5.jpg',
+      '/foto-6.jpg',
+      '/foto-7.jpg',
+      '/foto-8.jpg'
+    ]
+    preloadImagesOptimistic(galleryImages)
+  }, [])
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

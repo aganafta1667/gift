@@ -20,7 +20,7 @@ function App() {
   }
 
   // default password for the demo
-  const expectedPassword = 'cinta'
+  const expectedPassword = '524'
 
   // Page transition variants
   const pageVariants = {
