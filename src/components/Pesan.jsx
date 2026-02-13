@@ -12,6 +12,7 @@ const Pesan = () => {
   const [showMessage, setShowMessage] = useState(false)
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0)
   const [isLastParagraphComplete, setIsLastParagraphComplete] = useState(false)
+  const [showEmojiSplash, setShowEmojiSplash] = useState(false)
   const trackRef = useRef(null)
   const positionRef = useRef(0)
   const halfWidthRef = useRef(0)
@@ -25,7 +26,7 @@ const Pesan = () => {
   const paragraphData = [
     {
       id: 1,
-      content: 'Hai sayangkuu, cewe aku yang paling lucu dan paling gennit🤏🏻 selamat hari kasih sayang yaa, semoga kita bisa terus saling mengasihi dan menyayangi satu sama lain yaaa lopp. Kita bisa terus menjalin hubungan yg saling membangun, saling mengerti, dan saling menguatkan satu sama lain😘😘'
+      content: 'Hai babyy, cewe aku yang paling lucu dan paling gennit🤏🏻 selamat hari kasih sayang yaa, semoga kita bisa terus saling mengasihi dan menyayangi satu sama lain yaaa lopp. Kita bisa terus menjalin hubungan yg saling membangun, saling mengerti, dan saling menguatkan satu sama lain😘😘'
     },
     {
       id: 2,
@@ -76,6 +77,10 @@ const Pesan = () => {
   const handleOpenGift = () => {
     if (giftStage !== 'closed') return
     setGiftStage('opened')
+    setShowEmojiSplash(true)
+    setTimeout(() => {
+      setShowEmojiSplash(false)
+    }, 2000)
   }
 
   const handleOpenLetter = () => {
@@ -281,6 +286,52 @@ const Pesan = () => {
     }
   }
 
+  // Generate emoji particles for confetti splash
+  const generateEmojiParticles = () => {
+    const emojis = ['❤️', '🍫', '🌸']
+    const particles = []
+    for (let i = 0; i < 12; i++) {
+      const emoji = emojis[Math.floor(Math.random() * emojis.length)]
+      const angle = (Math.PI * 2 * i) / 12 // Spread evenly around circle
+      const distance = 80 + Math.random() * 120
+      const x = Math.cos(angle) * distance
+      const y = Math.sin(angle) * distance
+      particles.push({
+        id: i,
+        emoji,
+        x,
+        y: y - 100, // Start going up
+        rotation: Math.random() * 360,
+        delay: Math.random() * 0.1
+      })
+    }
+    return particles
+  }
+
+  const emojiParticles = showEmojiSplash ? generateEmojiParticles() : []
+
+  const emojiVariants = {
+    initial: { 
+      opacity: 1, 
+      x: 0, 
+      y: 0, 
+      rotate: 0,
+      scale: 0.8
+    },
+    animate: (particle) => ({
+      opacity: 0,
+      x: particle.x,
+      y: particle.y,
+      rotate: particle.rotation + 360,
+      scale: 0,
+      transition: {
+        duration: 2,
+        ease: "easeOut",
+        delay: particle.delay
+      }
+    })
+  }
+
   return (
     <div className='start-container page page-fade'>
       <div className='gradient-bg'></div>
@@ -379,6 +430,29 @@ const Pesan = () => {
                     />
                   </button>
                 </div>
+
+                {/* Emoji Splash Confetti */}
+                <AnimatePresence>
+                  {showEmojiSplash && emojiParticles.map((particle) => (
+                    <motion.div
+                      key={particle.id}
+                      custom={particle}
+                      variants={emojiVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit={{ opacity: 0 }}
+                      className="absolute pointer-events-none text-3xl"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                        translateX: '-50%',
+                        translateY: '-50%'
+                      }}
+                    >
+                      {particle.emoji}
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
 
                 {!showMessage && (
                   <AnimatePresence mode="wait">
@@ -529,7 +603,7 @@ const Pesan = () => {
                       Lucu lucu kann fotonyaa, nanti kita banyakin lagi yaa foto barengnya kalo dah ketemu🥹<br />
                       <div className='font-bold text-lg'>
                         Sayang clinnn🤗🤗<br />
-                        Lopyumoree sayangkuu💖 <br />
+                        Lopyumoree my babyy💖 <br />
                         Tuhan Yesus memberkatii😇
                       </div>
                     </p>
