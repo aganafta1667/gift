@@ -6,9 +6,9 @@ import { preloadAssetsOptimistic } from '../utils/imagePreloader'
 
 export default function Loading({ messages = null, messageInterval = 3000, expectedPassword = 'cinta', onSuccess = () => {} }) {
   const defaultMessages = [
-    'Loading...',
-    'Sabar yaa...',
-    'Nungguin ya??🤔🤔',
+    'loading...',
+    'bentar yaa...',
+    'nungguin ya??🤔🤔',
     'mwehehehee😊😊',
     'seperti biasa...',
     'verifikasi dulu yaa...'

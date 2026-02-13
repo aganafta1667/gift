@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import './App.css'
+import LoadingAwal from './components/LoadingAwal'
 import Start from './components/Start'
 import Loading from './components/Loading'
 import Pesan from './components/Pesan'
@@ -8,10 +9,14 @@ import HeartCursor from './components/HeartCursor'
 import PasswordModal from './components/PasswordModal'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('start') // 'start', 'loading', 'pesan'
+  const [currentPage, setCurrentPage] = useState('loadingAwal') // 'loadingAwal', 'start', 'loading', 'pesan'
 
   const handleStartClick = () => {
     setCurrentPage('loading')
+  }
+
+  const handleLoadingAwalComplete = () => {
+    setCurrentPage('start')
   }
 
   const handleUnlock = () => {
@@ -53,6 +58,17 @@ function App() {
     <>
       <HeartCursor />
       <AnimatePresence mode="wait">
+        {currentPage === 'loadingAwal' && (
+          <motion.div
+            key="loadingAwal"
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <LoadingAwal onLoadComplete={handleLoadingAwalComplete} />
+          </motion.div>
+        )}
         {currentPage === 'start' && (
           <motion.div
             key="start"
