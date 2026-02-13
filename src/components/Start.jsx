@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import '../styles/start.css'
-import { preloadImagesOptimistic } from '../utils/imagePreloader'
+import { preloadAssetsOptimistic } from '../utils/imagePreloader'
 
 const Start = ({ onStartClick }) => {
   // Agresif preload: load semua foto sejak halaman Start dibuka
   useEffect(() => {
-    const galleryImages = [
+    const publicAssets = [
+      '/bunga.png',
+      '/cokelat.png',
       '/foto-1.jpg',
       '/foto-2.jpg',
       '/foto-3.jpg',
@@ -14,9 +16,19 @@ const Start = ({ onStartClick }) => {
       '/foto-5.jpg',
       '/foto-6.jpg',
       '/foto-7.jpg',
-      '/foto-8.jpg'
+      '/foto-8.jpg',
+      '/image.png',
+      '/kadobuka.png',
+      '/kadotutup.png',
+      '/start.png',
+      '/stk1.webm',
+      '/stk2.webm',
+      '/surat.png',
+      '/suratbuka.png',
+      '/valentine.png',
+      '/vite.svg'
     ]
-    preloadImagesOptimistic(galleryImages)
+    preloadAssetsOptimistic(publicAssets)
   }, [])
   const containerVariants = {
     hidden: { opacity: 0 },

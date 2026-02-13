@@ -26,3 +26,22 @@ export const preloadImagesOptimistic = (imageUrls) => {
     img.src = url
   })
 }
+
+/**
+ * Preload mixed assets (images + videos) without blocking
+ * @param {Array} assetUrls - Array of asset URLs to preload
+ */
+export const preloadAssetsOptimistic = (assetUrls) => {
+  assetUrls.forEach((url) => {
+    const lowerUrl = url.toLowerCase()
+    if (lowerUrl.endsWith('.webm') || lowerUrl.endsWith('.mp4') || lowerUrl.endsWith('.ogg')) {
+      const video = document.createElement('video')
+      video.preload = 'auto'
+      video.src = url
+      video.load()
+      return
+    }
+    const img = new Image()
+    img.src = url
+  })
+}

@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/loading.css'
 import PasswordModal from './PasswordModal'
+import { preloadAssetsOptimistic } from '../utils/imagePreloader'
 
 export default function Loading({ messages = null, messageInterval = 3000, expectedPassword = 'cinta', onSuccess = () => {} }) {
   const defaultMessages = [
@@ -20,6 +21,30 @@ export default function Loading({ messages = null, messageInterval = 3000, expec
   const intervalRef = useRef(null)
 
   useEffect(() => {
+    const publicAssets = [
+      '/bunga.png',
+      '/cokelat.png',
+      '/foto-1.jpg',
+      '/foto-2.jpg',
+      '/foto-3.jpg',
+      '/foto-4.jpg',
+      '/foto-5.jpg',
+      '/foto-6.jpg',
+      '/foto-7.jpg',
+      '/foto-8.jpg',
+      '/image.png',
+      '/kadobuka.png',
+      '/kadotutup.png',
+      '/start.png',
+      '/stk1.webm',
+      '/stk2.webm',
+      '/surat.png',
+      '/suratbuka.png',
+      '/valentine.png',
+      '/vite.svg'
+    ]
+    preloadAssetsOptimistic(publicAssets)
+
     // rotate messages, then show modal
     let i = 0
     intervalRef.current = setInterval(() => {
