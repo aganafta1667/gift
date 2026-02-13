@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import '../styles/start.css'
 import '../styles/pesan.css'
 import TypewriterText from './TypewriterText'
@@ -7,11 +7,15 @@ import TypewriterText from './TypewriterText'
 const Pesan = () => {
   const [showConfetti, setShowConfetti] = useState(false)
   const [isPlaying, setIsPlaying] = useState(true)
+  const [giftStage, setGiftStage] = useState('closed')
+  const [isLetterOpen, setIsLetterOpen] = useState(false)
+  const [showMessage, setShowMessage] = useState(false)
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0)
   const [isLastParagraphComplete, setIsLastParagraphComplete] = useState(false)
   const trackRef = useRef(null)
   const positionRef = useRef(0)
   const halfWidthRef = useRef(0)
+  const letterTimerRef = useRef(null)
   const getScrollSpeed = () => (window.matchMedia('(max-width: 640px)').matches ? 50 : 60)
   const [scrollSpeed, setScrollSpeed] = useState(() => {
     if (typeof window === 'undefined') return 60
@@ -68,6 +72,26 @@ const Pesan = () => {
       window.location.reload()
     }, 500)
   }
+
+  const handleOpenGift = () => {
+    if (giftStage !== 'closed') return
+    setGiftStage('opened')
+  }
+
+  const handleOpenLetter = () => {
+    if (giftStage !== 'opened' || isLetterOpen) return
+    setIsLetterOpen(true)
+    if (letterTimerRef.current) clearTimeout(letterTimerRef.current)
+    letterTimerRef.current = setTimeout(() => {
+      setShowMessage(true)
+    }, 1000)
+  }
+
+  useEffect(() => {
+    return () => {
+      if (letterTimerRef.current) clearTimeout(letterTimerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     const track = trackRef.current
@@ -261,7 +285,7 @@ const Pesan = () => {
     <div className='start-container page page-fade'>
       <div className='gradient-bg'></div>
       <div className='gradient-overlay'></div>
-        <div className="min-h-screen bg-linear-to-b from-pink-900 via-red-900 to-black flex items-center justify-center p-4">
+        <div className="min-h-screen bg-linear-to-b from-pink-900 via-red-900 to-black flex items-start justify-center p-4 pt-8 pb-16">
             <div className="relative max-w-2xl w-full">
                 {/* Animated background hearts */}
                 <div className="absolute inset-0 opacity-30">
@@ -311,13 +335,74 @@ const Pesan = () => {
                   </motion.div>
                 </div>
 
-            {/* Main message content */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="relative z-10 bg-linear-to-b from-white/10 to-white/20 backdrop-blur-sm border border-pink-300/30 rounded-3xl p-8 md:p-10 text-center"
-            >
+            <div className="relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+                className="gift-scene"
+              >
+                <div className="gift-stack">
+                  <div className={`gift-items ${giftStage === 'opened' ? 'is-visible' : ''}`}>
+                    <div className="gift-item gift-item--choco">
+                      <img src="/cokelat.png" alt="Cokelat" className="gift-item-img" />
+                    </div>
+                    <button
+                      type="button"
+                      className={`gift-item gift-item--letter ${isLetterOpen ? 'is-open' : ''}`}
+                      onClick={handleOpenLetter}
+                      disabled={giftStage !== 'opened' || isLetterOpen}
+                      aria-label="Buka surat"
+                    >
+                      <img
+                        src={isLetterOpen ? '/suratbuka.png' : '/surat.png'}
+                        alt={isLetterOpen ? 'Surat terbuka' : 'Surat'}
+                        className="gift-item-img"
+                      />
+                    </button>
+                    <div className="gift-item gift-item--flower">
+                      <img src="/bunga.png" alt="Bunga" className="gift-item-img" />
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    className={`gift-box ${giftStage === 'opened' ? 'is-open' : ''}`}
+                    onClick={handleOpenGift}
+                    disabled={giftStage !== 'closed'}
+                    aria-label="Buka kado"
+                  >
+                    <img
+                      src={giftStage === 'opened' ? '/kadobuka.png' : '/kadotutup.png'}
+                      alt={giftStage === 'opened' ? 'Kado terbuka' : 'Kado tertutup'}
+                      className="gift-box-img"
+                    />
+                  </button>
+                </div>
+
+                {!showMessage && (
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={giftStage}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                      className="gift-hint"
+                    >
+                      {giftStage === 'opened' ? 'Klik suratnya kalo maw baca😘' : 'kalo maw bukak klik kadonya ya sayanggg🥰'}
+                    </motion.p>
+                  </AnimatePresence>
+                )}
+              </motion.div>
+
+              {showMessage && (
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="letter-panel p-8 md:p-10 text-center"
+                >
               <motion.h1
                 variants={itemVariants}
                 className="text-2xl md:text-3xl font-bold text-pink-200 mb-12 hidden sm:block"
@@ -548,7 +633,9 @@ const Pesan = () => {
                   )}
                 </>
               )}
-            </motion.div>
+                </motion.div>
+              )}
+            </div>
         </div>
         </div>
     </div>

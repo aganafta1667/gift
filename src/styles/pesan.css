@@ -45,7 +45,7 @@
   height: 44px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 198, 41, 0.482);
   color: #fff;
   font-weight: 700;
   cursor: pointer;
@@ -58,8 +58,8 @@
 }
 
 .control-btn--skip {
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  background: rgba(255, 198, 41, 0.482);
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 18px;
 }
@@ -129,6 +129,209 @@
   margin: 12px 0 0;
 }
 
+.gift-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.gift-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gift-box {
+  position: relative;
+  width: 330px;
+  height: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transform: translateY(0);
+  animation: giftFloat 3.2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  margin-top: 196px;
+}
+
+.gift-box:disabled {
+  cursor: default;
+}
+
+.gift-box:not(:disabled):hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+
+@keyframes giftFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.gift-box-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gift-items {
+  position: absolute;
+  bottom: 270px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  opacity: 0;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 1s ease, transform 1s ease;
+  pointer-events: none;
+}
+
+.gift-items.is-visible {
+  opacity: 1;
+  transform: translateY(-36px) scale(1);
+  pointer-events: auto;
+  animation: giftRiseBounce 1s ease;
+}
+
+@keyframes giftRiseBounce {
+  0% {
+    transform: translateY(16px) scale(0.9);
+  }
+  70% {
+    transform: translateY(-40px) scale(1.02);
+  }
+  100% {
+    transform: translateY(-36px) scale(1);
+  }
+}
+
+.gift-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 120px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.gift-item:disabled {
+  cursor: default;
+}
+
+.gift-item--letter {
+  width: 120px;
+  height: 170px;
+  cursor: pointer;
+  animation: itemFloat 2.8s ease-in-out infinite;
+}
+
+.gift-item--letter:not(:disabled):hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+.gift-item-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gift-item--letter .gift-item-img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.gift-item--choco {
+  transform: translateY(6px);
+  animation: itemFloat 2.6s ease-in-out infinite;
+}
+
+.gift-item--flower {
+  transform: translateY(6px);
+  animation: itemFloat 3s ease-in-out infinite;
+}
+
+@keyframes itemFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.gift-hint {
+  color: rgba(255, 226, 234, 0.9);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0;
+}
+
+.letter-panel {
+  border-radius: 28px;
+  background: linear-gradient(180deg, #fffaf0, #fff1d6);
+  border: 1px solid rgba(255, 183, 197, 0.65);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.letter-panel::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border-radius: 20px;
+  border: 1px dashed rgba(255, 172, 191, 0.5);
+  pointer-events: none;
+}
+
+.letter-panel h1,
+.letter-panel p {
+  color: #b91c1c;
+}
+
+.letter-panel .gallery-shell {
+  background: linear-gradient(135deg, rgba(255, 228, 190, 0.4), rgba(255, 193, 203, 0.35));
+  border: 1px solid rgba(255, 170, 190, 0.6);
+}
+
+.letter-panel .gallery-title {
+  color: #b91c1c;
+}
+
+.letter-panel .gallery-kicker {
+  color: rgba(185, 28, 28, 0.7);
+}
+
+.letter-panel .gallery-note {
+  color: rgba(185, 28, 28, 0.7);
+}
+
+.letter-panel .text-pink-200 {
+  color: #9f1239;
+}
+
+.letter-panel .bg-pink-400 {
+  background-color: #c2416c;
+}
+
 @media (max-width: 640px) {
   .gallery-shell {
     padding: 16px;
@@ -141,5 +344,20 @@
   .gallery-item {
     width: 150px;
     height: 190px;
+  }
+
+  .gift-box {
+    width: 260px;
+    margin-top: 176px;
+  }
+
+  .gift-item {
+    width: 80px;
+    height: 110px;
+  }
+
+  .gift-item--letter {
+    width: 100px;
+    height: 140px;
   }
 }

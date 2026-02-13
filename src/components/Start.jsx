@@ -104,7 +104,7 @@ const Start = ({ onStartClick }) => {
             className='description'
             variants={itemVariants}
           >
-            💌 Klik start untuk melihat pesan dari pakket yaaa 💌
+            💌 Klik start untuk lihat sesuatu dari pakket yaaa 💌
           </motion.p>
           <motion.div 
             className="lope flex justify-center gap-4 mt-10 mb-1"

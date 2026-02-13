@@ -1,6 +1,8 @@
 .start-container {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
+  min-height: 100dvh;
 }
 
 /* Animated Gradient Background */
