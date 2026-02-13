@@ -159,7 +159,7 @@ export default function LoadingAwal({ onLoadComplete = () => {} }) {
       >
         {/* Animated text */}
         <motion.h1
-          className={`text-lg md:text-xl font-bold bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent transition-opacity duration-300 ${
+          className={`text-lg md:text-xl font-bold bg-linear-to-r from-pink-400 to-red-400 bg-clip-text text-transparent transition-opacity duration-300 ${
             fade ? 'opacity-100' : 'opacity-0'
           }`}
           key={currentMessage}
@@ -170,7 +170,7 @@ export default function LoadingAwal({ onLoadComplete = () => {} }) {
         {/* Progress bar */}
         <div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-pink-400 to-red-400"
+            className="h-full bg-linear-to-r from-pink-400 to-red-400"
             animate={{ width: `${loadingProgress}%` }}
             transition={{ duration: 0.3 }}
           />
