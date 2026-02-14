@@ -332,6 +332,95 @@
   background-color: #c2416c;
 }
 
+/* Video Modal Styles */
+.video-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.video-modal-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.video-modal-container--bunga {
+  max-width: 95vw;
+  max-height: 95vh;
+}
+
+.video-modal-content {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 16px;
+}
+
+.video-modal-content.video-bunga {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.video-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.video-modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.video-modal-close:active {
+  transform: scale(0.95) rotate(90deg);
+}
+
+.video-modal-close-icon {
+  width: 20px;
+  height: 20px;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.gift-item--choco,
+.gift-item--flower {
+  cursor: pointer;
+}
+
+.gift-item--choco:not(:disabled):hover,
+.gift-item--flower:not(:disabled):hover {
+  transform: translateY(-6px) scale(1.05);
+}
+
 @media (max-width: 640px) {
   .gallery-shell {
     padding: 16px;
@@ -359,5 +448,21 @@
   .gift-item--letter {
     width: 100px;
     height: 140px;
+  }
+
+  .video-modal-overlay {
+    padding: 10px;
+  }
+
+  .video-modal-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .video-modal-close-icon {
+    width: 18px;
+    height: 18px;
   }
 }

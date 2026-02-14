@@ -35,6 +35,8 @@ export default function LoadingAwal({ onLoadComplete = () => {} }) {
       '/surat.png',
       '/suratbuka.png',
       '/valentine.png',
+      '/vidbunga.webm',
+      '/vidcokelat.webm',
       '/vite.svg'
     ]
 

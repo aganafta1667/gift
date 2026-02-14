@@ -13,6 +13,7 @@ const Pesan = () => {
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0)
   const [isLastParagraphComplete, setIsLastParagraphComplete] = useState(false)
   const [showEmojiSplash, setShowEmojiSplash] = useState(false)
+  const [activeVideo, setActiveVideo] = useState(null)
   const trackRef = useRef(null)
   const positionRef = useRef(0)
   const halfWidthRef = useRef(0)
@@ -92,11 +93,31 @@ const Pesan = () => {
     }, 1000)
   }
 
+  const openVideo = (videoType) => {
+    setActiveVideo(videoType)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeVideo = () => {
+    setActiveVideo(null)
+    document.body.style.overflow = 'auto'
+  }
+
   useEffect(() => {
     return () => {
       if (letterTimerRef.current) clearTimeout(letterTimerRef.current)
     }
   }, [])
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && activeVideo) {
+        closeVideo()
+      }
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [activeVideo])
 
   useEffect(() => {
     const track = trackRef.current
@@ -395,9 +416,15 @@ const Pesan = () => {
               >
                 <div className="gift-stack">
                   <div className={`gift-items ${giftStage === 'opened' ? 'is-visible' : ''}`}>
-                    <div className="gift-item gift-item--choco">
+                    <button
+                      type="button"
+                      className="gift-item gift-item--choco"
+                      onClick={() => openVideo('cokelat')}
+                      disabled={giftStage !== 'opened'}
+                      aria-label="Lihat video stiker cokelat"
+                    >
                       <img src="/cokelat.png" alt="Cokelat" className="gift-item-img" />
-                    </div>
+                    </button>
                     <button
                       type="button"
                       className={`gift-item gift-item--letter ${isLetterOpen ? 'is-open' : ''}`}
@@ -411,9 +438,15 @@ const Pesan = () => {
                         className="gift-item-img"
                       />
                     </button>
-                    <div className="gift-item gift-item--flower">
+                    <button
+                      type="button"
+                      className="gift-item gift-item--flower"
+                      onClick={() => openVideo('bunga')}
+                      disabled={giftStage !== 'opened'}
+                      aria-label="Lihat video stiker bunga"
+                    >
                       <img src="/bunga.png" alt="Bunga" className="gift-item-img" />
-                    </div>
+                    </button>
                   </div>
 
                   <button
@@ -712,6 +745,69 @@ const Pesan = () => {
             </div>
         </div>
         </div>
+
+        {/* Video Modal */}
+        <AnimatePresence>
+          {activeVideo && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="video-modal-overlay"
+              onClick={closeVideo}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="video-modal-container"
+                onClick={(e) => e.stopPropagation()}
+                style={activeVideo === 'bunga' ? {
+                  maxWidth: '95vw',
+                  maxHeight: '95vh'
+                } : {}}
+              >
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={`video-modal-content ${activeVideo === 'bunga' ? 'video-bunga' : ''}`}
+                  key={activeVideo}
+                >
+                  <source 
+                    src={activeVideo === 'cokelat' ? '/vidcokelat.webm' : '/vidbunga.webm'} 
+                    type="video/webm" 
+                  />
+                  Browser kamu tidak support video.
+                </video>
+                
+                <button
+                  type="button"
+                  onClick={closeVideo}
+                  className="video-modal-close"
+                  aria-label="Tutup video"
+                >
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="video-modal-close-icon"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
     </div>
     
   )
